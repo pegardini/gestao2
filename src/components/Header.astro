@@ -1,0 +1,70 @@
+---
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const links = [
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/#livros', label: 'Livros' },
+  { href: '/ferramentas', label: 'Ferramentas' },
+  { href: '/recursos', label: 'Recursos' },
+  { href: '/contato', label: 'Contato' },
+];
+const bookPaths = ['/livros', '/gestao-pastoral', '/jesus-tora', '/o-essencial', '/leia-o-primeiro-capitulo'];
+const isCurrent = (href: string) => {
+  if (href === '/#livros') return bookPaths.some((item) => path === item || path.startsWith(`${item}/`));
+  return path === href || path.startsWith(`${href}/`);
+};
+---
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Pe. Pedro de Celso Gardini — página inicial">
+      <svg class="brand__mark" viewBox="0 0 48 60" fill="none" aria-hidden="true">
+        <path
+          d="M8 56V25C8 12 15.5 5.5 24 3c8.5 2.5 16 9 16 22v31"
+          stroke="currentColor"
+          stroke-width="1.1"
+        />
+        <path d="M13 56V26c0-9.5 5-14.5 11-16.6C30 11.5 35 16.5 35 26v30" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
+        <path d="M24 3V0M21.5 1.5h5" stroke="currentColor" stroke-width="0.9" />
+        <text
+          x="24"
+          y="42"
+          text-anchor="middle"
+          font-family="Newsreader Variable, Georgia, serif"
+          font-size="15"
+          fill="currentColor"
+          letter-spacing="0.5">PG</text
+        >
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Pe. Pedro de Celso Gardini</span>
+        <span class="brand__role">Sacerdote · Jornalista · Autor</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal">
+      {
+        links.map((link) => (
+          <a
+            class="nav__link"
+            href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a class="btn header-cta" href="/contato">Falar com o autor</a>
+    </nav>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="menu-principal"
+      aria-label="Abrir menu"
+      data-nav-toggle
+    >
+      <span></span>
+    </button>
+  </div>
+</header>

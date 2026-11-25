@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+
+const kits = [
+  { file: 'perfil-monograma.png', title: 'Perfil com monograma', meta: '1080 × 1080 px' },
+];
+
+const posts = Array.from({ length: 12 }, (_, index) => {
+  const number = String(index + 1).padStart(2, '0');
+  return { file: `post-${number}.jpg`, title: `Post ${number}`, meta: '1080 × 1350 px' };
+});
+---
+
+<Base
+  title="Imagens para redes sociais"
+  description="Capas, perfis e posts do autor e dos livros, prontos para usar no Facebook, Instagram e LinkedIn."
+  canonical={`${site.url}/redes/`}
+  noindex
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="rubric">Kit de imagens</span>
+      <h1>Imagens para redes sociais</h1>
+      <p class="lead">
+        Arquivos no tamanho certo para publicar. Clique para abrir em tamanho real e salvar no
+        celular ou no computador.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <h2 class="redes__title">Perfil</h2>
+      <div class="redes-grid redes-grid--wide">
+        {
+          kits.map((item) => (
+            <a class="redes-card" href={`/redes/${item.file}`} target="_blank" rel="noopener">
+              <img src={`/redes/${item.file}`} alt={item.title} loading="lazy" />
+              <span>{item.title}</span>
+              <small>{item.meta}</small>
+            </a>
+          ))
+        }
+      </div>
+
+      <h2 class="redes__title">Posts do livro</h2>
+      <div class="redes-grid">
+        {
+          posts.map((item) => (
+            <a class="redes-card" href={`/redes/${item.file}`} target="_blank" rel="noopener">
+              <img src={`/redes/${item.file}`} alt={item.title} loading="lazy" />
+              <span>{item.title}</span>
+              <small>{item.meta}</small>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .redes__title {
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    margin: 2.5rem 0 1.25rem;
+  }
+  .redes__title:first-child { margin-top: 0; }
+  .redes-grid {
+    align-items: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 1rem;
+  }
+  .redes-grid--wide { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .redes-card {
+    display: grid;
+    gap: 0.25rem;
+    border: 1px solid var(--line);
+    background: var(--paper-light);
+    padding: 0.6rem;
+    color: var(--ink);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .redes-card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+  .redes-card img { width: 100%; height: auto; display: block; background: var(--paper-soft); }
+  .redes-card span { font-size: 0.85rem; margin-top: 0.35rem; }
+  .redes-card small { font-size: 0.7rem; color: var(--ink-mute); letter-spacing: 0.06em; }
+</style>

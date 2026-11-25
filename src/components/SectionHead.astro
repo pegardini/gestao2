@@ -1,0 +1,26 @@
+---
+interface Props {
+  roman?: string;
+  label?: string;
+  title: string;
+  aside?: string;
+  light?: boolean;
+}
+
+const { roman, label, title, aside, light = false } = Astro.props;
+---
+
+<div class="section-head">
+  <div class="section-head__title">
+    {
+      label && (
+        <span class:list={['rubric', light && 'rubric--light']}>
+          {roman && <span class="roman">{roman}</span>}
+          {label}
+        </span>
+      )
+    }
+    <h2>{title}</h2>
+  </div>
+  {aside && <p class="section-head__aside">{aside}</p>}
+</div>

@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import BookDetail from '../components/BookDetail.astro';
+import { getBook } from '../data/site';
+import { bookSchema } from '../lib/bookSchema';
+
+const book = getBook('gestao-pastoral')!;
+---
+
+<Base
+  title={book.title}
+  description={`${book.title} — ${book.subtitle}. Impresso R$ 52,68 e Kindle R$ 31,99 na Amazon.`}
+  schema={bookSchema(book)}
+>
+  <BookDetail book={book} />
+</Base>

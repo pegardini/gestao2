@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Relatório financeiro pastoral"
+  description="Modelo de relatório financeiro para paróquias: organize receitas, despesas e prioridades em uma página que pode ser impressa e levada ao conselho."
+  canonical={`${site.url}/relatorio-financeiro`}
+  noindex
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Você está aqui">
+        <a href="/ferramentas">Ferramentas</a><span aria-hidden="true">/</span>
+        <span>Relatório financeiro</span>
+      </nav>
+      <span class="rubric" style="margin-top:1.5rem">Ferramenta 07</span>
+      <h1>Relatório financeiro pastoral</h1>
+      <p class="lead">
+        Receitas, despesas e prioridades em uma página só. Preencha os percentuais, confira os
+        totais e imprima para a reunião do conselho.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="report-head">
+        <label>
+          <span>Paróquia</span>
+          <input type="text" value="Paróquia São Pedro" data-parish />
+        </label>
+        <label>
+          <span>Período</span>
+          <input type="text" value="Novembro de 2026" data-period />
+        </label>
+        <button class="btn btn--ghost no-print" type="button" data-print>
+          Imprimir <Icon name="printer" />
+        </button>
+      </div>
+
+      <p class="report-title"><span data-title-parish>Paróquia São Pedro</span> · <span data-title-period>Novembro de 2026</span></p>
+
+      <div class="report-grid">
+        <section class="report-block">
+          <h2>Receitas <small>(%)</small></h2>
+          <div data-rows="income"></div>
+          <button class="report-add no-print" type="button" data-add="income">+ Adicionar receita</button>
+          <p class="report-total report-total--in">Total: <strong data-total="income">100</strong>%</p>
+        </section>
+
+        <section class="report-block">
+          <h2>Despesas <small>(%)</small></h2>
+          <div data-rows="expense"></div>
+          <button class="report-add no-print" type="button" data-add="expense">+ Adicionar despesa</button>
+          <p class="report-total report-total--out">Total: <strong data-total="expense">100</strong>%</p>
+        </section>
+      </div>
+
+      <div class="report-note">
+        <h2>Como usar no conselho</h2>
+        <p>
+          O relatório trabalha com percentuais para que a conversa comece pela prioridade, e não pelo
+          valor absoluto. Depois de fechar os percentuais, o conselho decide o que entra, o que sai e
+          o que precisa de mais tempo. O modelo completo, com a planilha de apoio, está no capítulo
+          sobre administração transparente de <em>Gestão Pastoral</em>.
+        </p>
+        <p class="no-print">
+          <a class="link-arrow" href="/gestao-pastoral">Conhecer o livro <Icon name="arrow" /></a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  .report-head {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+    border: 1px solid var(--line);
+    background: var(--paper-light);
+    padding: 1.25rem;
+  }
+  .report-head label { display: grid; gap: 0.35rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mute); }
+  .report-head input { font: inherit; font-size: 1rem; padding: 0.55rem 0.65rem; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+  .report-title { max-width: 1000px; font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); color: var(--navy); margin: 1.75rem 0 1.25rem; }
+  .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 1000px; }
+  .report-block { border: 1px solid var(--line); padding: 1.25rem; background: #fffdf8; }
+  .report-block h2 { font-size: 1.1rem; margin: 0 0 0.9rem; }
+  .report-block h2 small { font-family: var(--sans); font-size: 0.7rem; color: var(--ink-mute); letter-spacing: 0.1em; }
+  .report-row { display: grid; grid-template-columns: minmax(0, 1fr) 72px 30px; gap: 0.4rem; margin-bottom: 0.4rem; }
+  .report-row input[type='text'], .report-row input[type='number'] { font: inherit; font-size: 0.88rem; padding: 0.45rem 0.5rem; border: 1px solid var(--line); background: #fff; width: 100%; }
+  .report-row button { border: 1px solid var(--line); background: transparent; color: var(--wine); cursor: pointer; font-size: 0.9rem; line-height: 1; }
+  .report-add { margin-top: 0.6rem; border: 0; background: transparent; color: var(--navy); font: inherit; font-size: 0.82rem; cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+  .report-total { margin: 1rem 0 0; font-size: 0.85rem; color: var(--ink-mute); display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 0.7rem; }
+  .report-total strong { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; }
+  .report-total--in strong { color: var(--navy); }
+  .report-total--out strong { color: var(--wine); }
+  .report-note { margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+  .report-note h2 { font-size: 1.2rem; }
+  .report-note p { max-width: 62ch; }
+  @media (max-width: 760px) {
+    .report-head {
+    max-width: 1000px; grid-template-columns: 1fr; }
+    .report-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .no-print, .site-header, .site-footer { display: none !important; }
+    .page-hero { padding: 0 0 1rem; }
+    .report-head {
+    max-width: 1000px; border: 0; padding: 0; background: none; }
+    .report-head input { border: 0; padding: 0; }
+    .report-block { break-inside: avoid; }
+    body { background: #fff; }
+  }
+</style>
+
+<script>
+  type Item = { name: string; value: number };
+
+  const state: { income: Item[]; expense: Item[] } = {
+    income: [
+      { name: 'Dízimo', value: 65 },
+      { name: 'Ofertas e doações', value: 20 },
+      { name: 'Eventos e bazares', value: 10 },
+      { name: 'Outros', value: 5 },
+    ],
+    expense: [
+      { name: 'Manutenção e despesas fixas', value: 40 },
+      { name: 'Ação social e caridade', value: 25 },
+      { name: 'Formação e evangelização', value: 20 },
+      { name: 'Projetos de infraestrutura', value: 15 },
+    ],
+  };
+
+  const rowsFor = (kind: 'income' | 'expense') => document.querySelector<HTMLElement>(`[data-rows="${kind}"]`);
+  const totalFor = (kind: 'income' | 'expense') =>
+    document.querySelector<HTMLElement>(`[data-total="${kind}"]`);
+
+  const render = (kind: 'income' | 'expense') => {
+    const container = rowsFor(kind);
+    if (!container) return;
+    container.innerHTML = '';
+    state[kind].forEach((item, index) => {
+      const row = document.createElement('div');
+      row.className = 'report-row';
+      row.innerHTML = `
+        <input type="text" value="${item.name.replace(/"/g, '&quot;')}" aria-label="Descrição">
+        <input type="number" min="0" max="100" step="1" value="${item.value}" aria-label="Percentual">
+        <button type="button" aria-label="Remover">×</button>`;
+      const [name, value, remove] = Array.from(row.querySelectorAll('input, button')) as [
+        HTMLInputElement,
+        HTMLInputElement,
+        HTMLButtonElement,
+      ];
+      name.addEventListener('input', () => {
+        state[kind][index].name = name.value;
+      });
+      value.addEventListener('input', () => {
+        state[kind][index].value = Number(value.value) || 0;
+        updateTotal(kind);
+      });
+      remove.addEventListener('click', () => {
+        state[kind].splice(index, 1);
+        render(kind);
+        updateTotal(kind);
+      });
+      container.appendChild(row);
+    });
+  };
+
+  const updateTotal = (kind: 'income' | 'expense') => {
+    const total = state[kind].reduce((sum, item) => sum + item.value, 0);
+    const target = totalFor(kind);
+    if (target) target.textContent = String(total);
+  };
+
+  (['income', 'expense'] as const).forEach((kind) => {
+    render(kind);
+    updateTotal(kind);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-add]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const kind = button.dataset.add as 'income' | 'expense';
+      state[kind].push({ name: '', value: 0 });
+      render(kind);
+      const container = rowsFor(kind);
+      const inputs = container?.querySelectorAll<HTMLInputElement>('input[type="text"]');
+      inputs?.[inputs.length - 1]?.focus();
+    });
+  });
+
+  const parish = document.querySelector<HTMLInputElement>('[data-parish]');
+  const period = document.querySelector<HTMLInputElement>('[data-period]');
+  const titleParish = document.querySelector<HTMLElement>('[data-title-parish]');
+  const titlePeriod = document.querySelector<HTMLElement>('[data-title-period]');
+
+  parish?.addEventListener('input', () => {
+    if (titleParish) titleParish.textContent = parish.value;
+  });
+  period?.addEventListener('input', () => {
+    if (titlePeriod) titlePeriod.textContent = period.value;
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-print]').forEach((button) => {
+    button.addEventListener('click', () => window.print());
+  });
+</script>

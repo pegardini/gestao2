@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import BookDetail from '../../components/BookDetail.astro';
+import { getBook } from '../../data/site';
+import { bookSchema } from '../../lib/bookSchema';
+
+const book = getBook('o-essencial')!;
+---
+
+<Base
+  title={book.title}
+  description={`${book.title} — ${book.subtitle}. ${book.short}`}
+  schema={bookSchema(book)}
+>
+  <BookDetail book={book} />
+</Base>

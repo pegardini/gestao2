@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const updated = '25 de novembro de 2026';
+---
+
+<Base
+  title="Privacidade"
+  description="O que acontece com os seus dados quando você usa este site e as ferramentas do livro Gestão Pastoral."
+  canonical={`${site.url}/privacidade`}
+>
+  <section class="page-hero">
+    <div class="wrap wrap--narrow">
+      <span class="rubric">Transparência</span>
+      <h1>Privacidade</h1>
+      <p class="lead">
+        Esta página explica, sem rodeios, o que acontece com os seus dados quando você usa este site
+        e as ferramentas do livro <em>Gestão Pastoral</em>.
+      </p>
+      <p class="privacidade__updated">Atualizado em {updated}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap wrap--narrow prose">
+      <h2>Quem cuida dos dados</h2>
+      <p>
+        Pe. Pedro de Celso Gardini, autor do livro e responsável por este site. Dúvidas, pedidos e
+        reclamações: <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+
+      <h2>O que este site não faz</h2>
+      <p>
+        O site não tem cadastro, não pede senha, não abre pop-up de newsletter e não instala
+        rastreadores de publicidade. Não coletamos nome, e-mail, telefone ou qualquer dado pessoal
+        pelo simples fato de você navegar.
+      </p>
+
+      <h2>Ferramentas que rodam no seu navegador</h2>
+      <p>
+        A Roda da Vida Pastoral, as Metas SMART, a análise SWOT, a matriz de Eisenhower, o plano
+        5W2H, o checklist de acolhida e o relatório financeiro funcionam inteiramente no seu
+        dispositivo. O que você digita não é enviado para nenhum servidor: ao fechar a página, os
+        campos voltam ao modelo em branco. Se quiser guardar o preenchimento, use a opção de
+        imprimir e salve em PDF.
+      </p>
+
+      <h2>Compra dos livros</h2>
+      <p>
+        A compra acontece fora deste site, na Amazon, que tem a sua própria política de privacidade.
+        Não recebemos nem guardamos dados de pagamento, endereço ou conta.
+      </p>
+
+      <h2>Links para outras plataformas</h2>
+      <p>
+        Os botões de Instagram, YouTube, LinkedIn e Facebook levam a serviços de terceiros. A partir
+        do momento em que você clica, valem as políticas dessas plataformas.
+      </p>
+
+      <h2>Seus direitos</h2>
+      <p>
+        Como não mantemos base de dados de visitantes, não há o que corrigir ou apagar por aqui. Se
+        em algum momento você escrever para o autor por e-mail, a mensagem fica na caixa postal e
+        pode ser apagada a qualquer momento — basta pedir, pelo mesmo endereço, com base no art. 18
+        da LGPD.
+      </p>
+
+      <h2>Mudanças nesta página</h2>
+      <p>
+        Se algo mudar — por exemplo, se o site passar a ter formulário ou medição de audiência — esta
+        página será atualizada antes, com a nova data no topo.
+      </p>
+
+      <p class="privacidade__back">
+        <a class="link-arrow" href="/">Voltar ao início</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .privacidade__updated {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .privacidade__back { margin-top: 2.5rem; }
+</style>

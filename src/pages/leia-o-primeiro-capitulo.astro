@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import ChapterOne from '../components/ChapterOne.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Primeiro capítulo de Gestão Pastoral"
+  description="Leia gratuitamente o capítulo 1 de Gestão Pastoral: a acolhida como primeira evangelização, o desafio do banco vazio e os quatro pilares da renovação paroquial."
+  canonical={`${site.url}/leia-o-primeiro-capitulo`}
+>
+  <ChapterOne />
+</Base>

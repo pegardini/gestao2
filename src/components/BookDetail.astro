@@ -1,0 +1,134 @@
+---
+import Icon from './Icon.astro';
+import type { Book } from '../data/site';
+import { books, site } from '../data/site';
+
+interface Props {
+  book: Book;
+  schema?: Record<string, unknown>;
+}
+
+const { book } = Astro.props;
+const others = books.filter((item) => item.slug !== book.slug);
+const sampleChapter = book.slug === 'gestao-pastoral' ? '/leia-o-primeiro-capitulo' : undefined;
+---
+
+<article class="book-detail">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Você está aqui">
+      <a href="/">Início</a><span aria-hidden="true">/</span>
+      <a href="/#livros">Livros</a><span aria-hidden="true">/</span>
+      <span>{book.title}</span>
+    </nav>
+
+    <div class="book-detail__grid" style="margin-top:2rem">
+      <div class="book-detail__visual">
+        <div class="book-detail__cover">
+          <img src={book.cover} alt={book.coverAlt} width="780" height="1400" fetchpriority="high" />
+        </div>
+
+        {
+          book.buy ? (
+            <div class="book-detail__buy">
+              {book.buy.map((option) => (
+                <a
+                  class:list={['btn', !option.primary && 'btn--ghost']}
+                  href={option.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>{option.label}</span>
+                  {option.price && <span class="btn__price">{option.price}</span>}
+                  <Icon name="external" />
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="book-detail__buy">
+              <a
+                class="btn"
+                href={`mailto:${site.email}?subject=Lan%C3%A7amento%20-%20O%20Essencial%20%C3%A9%20Invis%C3%ADvel%20aos%20Olhos`}
+              >
+                Avisem-me do lançamento <Icon name="mail" />
+              </a>
+            </div>
+          )
+        }
+
+        <p class="book-detail__note">
+          {
+            book.status === 'available'
+              ? 'Compra pela Amazon. O impresso é produzido sob demanda e o Kindle é lido no aplicativo da Amazon.'
+              : 'O livro está em preparação. Escreva para receber a data de lançamento.'
+          }
+        </p>
+
+        {
+          sampleChapter && (
+            <p class="book-detail__note">
+              <a class="link-arrow" href={sampleChapter}>
+                Ler o primeiro capítulo <Icon name="arrow" />
+              </a>
+            </p>
+          )
+        }
+      </div>
+
+      <div>
+        <header class="book-detail__head">
+          <span class="rubric">{book.kicker}</span>
+          <h1>{book.title}</h1>
+          <p class="book-detail__sub">{book.subtitle}</p>
+        </header>
+
+        <div class="book-detail__body">
+          <h2>Sobre o livro</h2>
+          {book.synopsis.map((paragraph) => <p>{paragraph}</p>)}
+
+          <h2>O que você encontra</h2>
+          <ul class="topic-list">
+            {book.topics.map((topic) => <li>{topic}</li>)}
+          </ul>
+
+          <h2>Para quem é</h2>
+          <ul class="audience-tags">
+            {book.audience.map((audience) => <li>{audience}</li>)}
+          </ul>
+
+          <table class="spec-table">
+            <caption>Ficha técnica</caption>
+            <tbody>
+              {
+                book.specs.map((spec) => (
+                  <tr>
+                    <th scope="row">{spec.label}</th>
+                    <td>{spec.value}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+
+          {book.note && <p class="book-detail__note" style="margin-top:2rem">{book.note}</p>}
+        </div>
+      </div>
+    </div>
+
+    <section class="next-books">
+      <span class="rubric">Continue lendo</span>
+      <div class="next-books__grid">
+        {
+          others.map((other) => (
+            <a class="next-book" href={`/${other.slug}`}>
+              <img src={other.cover} alt="" width="780" height="1400" loading="lazy" />
+              <div>
+                <span>{other.kicker}</span>
+                <h3>{other.title}</h3>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</article>

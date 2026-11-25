@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { site, resources } from '../data/site';
+---
+
+<Base
+  title="Recursos"
+  description="Ferramentas práticas de gestão pastoral para paróquias: diagnóstico, PDCA, acolhida, secretaria e reuniões de conselho. Materiais de apoio ao livro Gestão Pastoral."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Você está aqui">
+        <a href="/">Início</a><span aria-hidden="true">/</span><span>Recursos</span>
+      </nav>
+      <div class="page-hero__grid" style="margin-top:1.75rem">
+        <div>
+          <span class="rubric">Para paróquias</span>
+          <h1>Ferramentas para transformar boa vontade em ação organizada.</h1>
+        </div>
+        <p class="page-hero__aside">
+          Modelos práticos para preencher, visualizar e imprimir. Materiais de apoio ao livro
+          <em>Gestão Pastoral</em>, pensados para a rotina real de uma comunidade.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="note-box" style="margin-bottom:2.5rem">
+        <strong>Como acessar.</strong> As ferramentas ficam na biblioteca digital do autor, junto
+        com os livros e materiais complementares. O acesso é gratuito e não exige cadastro.
+        <a class="tlink" href={site.toolsUrl} target="_blank" rel="noopener noreferrer">
+          Abrir a página de ferramentas ↗
+        </a>
+      </div>
+
+      <div class="resource-cards">
+        {
+          resources.map((resource, index) => (
+            <article class="resource-card reveal" style={`--delay:${index * 60}ms`}>
+              <span class="roman">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{resource.title}</h3>
+              <p>{resource.text}</p>
+              <a
+                class="link-arrow"
+                href={site.toolsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Acessar modelo <Icon name="external" />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft">
+    <div class="wrap">
+      <SectionHead
+        roman="I"
+        label="Roteiro"
+        title="Um ciclo simples, do diagnóstico ao acompanhamento"
+        aside="A sequência usada no livro. Pode ser aplicada a uma paróquia inteira ou a uma pastoral específica."
+      />
+
+      <ul class="timeline">
+        <li class="reveal">
+          <span class="timeline__key">Primeiro</span>
+          <div class="timeline__value">
+            <strong>Olhar o cenário</strong>
+            Reunir dados simples: número de celebrações, equipes, atividades, frequência,
+            infraestrutura e principais dificuldades. Sem diagnóstico, o planejamento vira desejo.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Segundo</span>
+          <div class="timeline__value">
+            <strong>Definir poucas prioridades</strong>
+            Escolher de duas a três frentes para o ano, com responsáveis, prazos e indicadores
+            possíveis. Menos frentes bem acompanhadas produzem mais fruto.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Terceiro</span>
+          <div class="timeline__value">
+            <strong>Executar com acompanhamento</strong>
+            Reuniões breves e regulares, pauta objetiva, atas com encaminhamentos. O PDCA entra
+            aqui como ritmo, não como burocracia.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Quarto</span>
+          <div class="timeline__value">
+            <strong>Revisar e formar sucessores</strong>
+            Avaliar o que funcionou, ajustar o que não funcionou e preparar quem continuará o
+            trabalho. Sustentabilidade pastoral também é cuidado.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="rubric rubric--light">Acompanhamento</span>
+        <h2 style="margin-top:1.1rem;max-width:17ch">Precisa de ajuda para aplicar na sua paróquia?</h2>
+        <p style="margin-top:1.2rem;color:rgba(246,241,230,.7);max-width:42ch">
+          É possível marcar uma conversa inicial para entender o contexto e desenhar um percurso de
+          formação ou assessoria.
+        </p>
+      </div>
+      <div style="justify-self:start">
+        <a class="btn btn--light" href={`mailto:${site.email}?subject=Assessoria%20de%20gest%C3%A3o%20pastoral`}>
+          Falar sobre assessoria <Icon name="mail" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

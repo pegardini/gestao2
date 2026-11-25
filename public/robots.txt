@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /relatorio-financeiro
+Disallow: /redes/
+Disallow: /livros/
+Disallow: /o-essencial/primeiro-capitulo
+
+Sitemap: https://livros.pcgdigital.com.br/sitemap.xml

@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Contato"
+  description="Fale com o Pe. Pedro de Celso Gardini: convites para formações, assessoria a paróquias, imprensa, editoras e mensagens de leitores."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Você está aqui">
+        <a href="/">Início</a><span aria-hidden="true">/</span><span>Contato</span>
+      </nav>
+      <div class="page-hero__grid" style="margin-top:1.75rem">
+        <div>
+          <span class="rubric">Contato</span>
+          <h1>Escreva. A resposta vem de perto.</h1>
+        </div>
+        <p class="page-hero__aside">
+          Não há formulário nem caixa automática. Toda mensagem chega diretamente ao autor e é lida
+          com atenção — mesmo quando a resposta demora.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap contact-grid" style="align-items:start">
+      <div>
+        <span class="rubric">E-mail</span>
+        <a
+          class="contact-email"
+          href={`mailto:${site.email}`}
+          style="color:var(--ink);border-color:var(--line-strong)"
+        >
+          {site.email}
+        </a>
+        <p style="margin-top:1.5rem;color:var(--ink-soft);max-width:40ch">
+          Para agilizar, indique no assunto o motivo do contato: formação, assessoria, imprensa,
+          editora ou mensagem de leitor.
+        </p>
+
+        <div class="note-box" style="margin-top:2.5rem">
+          <strong>Uma observação sobre confidencialidade.</strong> Mensagens com relatos pessoais
+          são tratadas com discrição. Se o assunto for de foro íntimo ou envolver acompanhamento
+          espiritual, procure também a paróquia mais próxima — o cuidado presencial é insubstituível.
+        </div>
+      </div>
+
+      <div>
+        <div class="socials" style="border-color:var(--line)">
+          {
+            site.socials.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style="border-color:var(--line);color:var(--ink-soft)"
+              >
+                <span>{social.label}</span>
+                <span style="color:var(--ink-mute)">{social.handle} ↗</span>
+              </a>
+            ))
+          }
+        </div>
+        <p style="margin-top:1.25rem;font-size:.82rem;color:var(--ink-mute)">
+          As redes são atualizadas pelo próprio autor. Para assuntos formais, prefira o e-mail.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft">
+    <div class="wrap">
+      <SectionHead
+        roman="I"
+        label="Motivos frequentes"
+        title="Por onde começar"
+        aside="Quatro caminhos de contato. Se o seu caso não estiver aqui, escreva mesmo assim."
+      />
+
+      <div class="contact-cards">
+        <div class="contact-card reveal">
+          <h3>Leitores</h3>
+          <p>
+            Dúvidas sobre os livros, sugestões de temas, relatos de uso em paróquias e grupos de
+            estudo. Todo retorno ajuda a pensar os próximos textos.
+          </p>
+        </div>
+        <div class="contact-card reveal" style="--delay:60ms">
+          <h3>Paróquias e dioceses</h3>
+          <p>
+            Formações, palestras, assessoria a conselhos e acompanhamento de equipes. Informe o
+            contexto, o número de participantes e as datas possíveis.
+          </p>
+        </div>
+        <div class="contact-card reveal" style="--delay:120ms">
+          <h3>Editoras e imprensa</h3>
+          <p>
+            Direitos, projetos editoriais, entrevistas e materiais de divulgação. É possível
+            solicitar textos, imagens e a ficha técnica das obras.
+          </p>
+        </div>
+        <div class="contact-card reveal" style="--delay:180ms">
+          <h3>Convites e parcerias</h3>
+          <p>
+            Congressos, semanas de formação, podcasts e iniciativas de evangelização. A proposta é
+            avaliada com atenção ao calendário e ao alinhamento de conteúdo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="rubric rubric--light">Antes de escrever</span>
+        <h2 style="margin-top:1.1rem;max-width:18ch">Conheça os livros e os recursos.</h2>
+        <p style="margin-top:1.2rem;color:rgba(246,241,230,.7);max-width:42ch">
+          Muitas dúvidas já encontram resposta nas páginas das obras ou nas ferramentas de gestão
+          pastoral.
+        </p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.9rem;justify-self:start">
+        <a class="btn btn--light" href="/#livros">Ver os livros <Icon name="arrow" /></a>
+        <a class="btn btn--outline-light" href="/recursos">Recursos</a>
+      </div>
+    </div>
+  </section>
+</Base>

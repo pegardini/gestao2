@@ -1,0 +1,269 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import BookCard from '../components/BookCard.astro';
+import { site, books, themes, resources, invitations } from '../data/site';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+// A foto oficial do autor entra em public/images/autor.jpg.
+// Enquanto o arquivo não existir, o hero usa a placa com o monograma.
+const photoPath = fileURLToPath(new URL('../../public/images/autor.jpg', import.meta.url));
+const hasPhoto = existsSync(photoPath);
+---
+
+<Base
+  title={site.name}
+  description="Portfólio do Pe. Pedro de Celso Gardini, sacerdote, jornalista e autor. Conheça os livros Gestão Pastoral e Jesus, a Torá e a Identidade Judaica, os temas de escrita e os recursos para paróquias."
+>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <span class="rubric hero__eyebrow">Sacerdote · Jornalista · Autor</span>
+        <h1>Escrevo para uma Igreja que <em>acolhe, organiza e escuta</em>.</h1>
+        <p class="lead hero__lead">{site.intro}</p>
+        <div class="hero__actions">
+          <a class="btn" href="#livros">Conhecer os livros <Icon name="arrow-down" /></a>
+          <a class="btn btn--ghost" href="/sobre">Sobre o autor</a>
+        </div>
+        <ul class="hero__meta">
+          <li>Diocese de São Carlos — SP</li>
+          <li>Dois publicados, um em preparação</li>
+          <li>Administração, Filosofia e Teologia</li>
+        </ul>
+      </div>
+
+      <figure class="hero__portrait reveal">
+        <div class="portrait-frame">
+          {
+            hasPhoto ? (
+              <img
+                src="/images/autor.jpg"
+                alt="Retrato do Pe. Pedro de Celso Gardini"
+                width="1200"
+                height="1490"
+                fetchpriority="high"
+              />
+            ) : (
+              <div class="author-plate">
+                <span class="author-plate__kicker">Autor</span>
+                <span class="author-plate__rule" aria-hidden="true"></span>
+                <span class="author-plate__monogram">PG</span>
+                <span class="author-plate__rule" aria-hidden="true"></span>
+                <p class="author-plate__name">Pedro de Celso Gardini</p>
+                <p class="author-plate__role">Sacerdote · Jornalista · Autor</p>
+              </div>
+            )
+          }
+        </div>
+        <figcaption class="portrait-caption">
+          <span>Pe. Pedro de Celso Gardini</span>
+          <span>São Carlos, SP</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="quote-band">
+    <div class="wrap quote-band__inner">
+      <Icon name="quote" class="quote-band__mark" />
+      <div>
+        <blockquote>“Ela existe para evangelizar.”</blockquote>
+        <cite>Papa Paulo VI · Evangelii Nuntiandi, 14</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-grid__aside">
+        <span class="rubric">Quem escreve</span>
+        <h2>Um sacerdote que escreve com método e escuta.</h2>
+        <div class="signature">
+          <span class="signature__line"></span>
+          <span class="signature__name">Pe. Pedro Gardini</span>
+        </div>
+      </div>
+
+      <div class="about-grid__body">
+        <p class="dropcap">
+          Pedro de Celso Gardini é sacerdote da Diocese de São Carlos, jornalista e autor. A
+          combinação não é acidental: antes de escrever sobre organização pastoral, aprendeu a
+          ouvir histórias, a perguntar e a traduzir o que ouviu em linguagem clara.
+        </p>
+        <p>
+          Formado em Administração de Empresas, Filosofia e Teologia, com formação em gestão
+          estratégica de pessoas, encontrou na vida paroquial o lugar onde esses saberes se
+          encontram. A pergunta que orienta seu trabalho é simples: como fazer com que a boa
+          vontade de tantas pessoas se transforme em cuidado concreto, sem que ninguém se esgote
+          no caminho?
+        </p>
+        <p>
+          Dessa experiência nasceram os livros — e uma convicção que atravessa todos eles: gestão
+          pastoral não é burocracia; é amor organizado. Toda estrutura, na Igreja, existe para
+          servir ao encontro.
+        </p>
+
+        <ul class="fact-list">
+          <li>
+            <span class="fact-list__key">Ministério</span>
+            <span class="fact-list__value">Sacerdote da Diocese de São Carlos, no interior de São Paulo</span>
+          </li>
+          <li>
+            <span class="fact-list__key">Formação</span>
+            <span class="fact-list__value">Administração de Empresas, Filosofia e Teologia; gestão estratégica de pessoas</span>
+          </li>
+          <li>
+            <span class="fact-list__key">Escrita</span>
+            <span class="fact-list__value">Gestão pastoral, acolhida, liderança, Bíblia e raízes judaicas</span>
+          </li>
+          <li>
+            <span class="fact-list__key">Presença</span>
+            <span class="fact-list__value">Livros, formações e um canal no YouTube dedicado à evangelização</span>
+          </li>
+        </ul>
+
+        <p style="margin-top:2rem">
+          <a class="link-arrow" href="/sobre">Ler a trajetória completa <Icon name="arrow" /></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft" id="livros">
+    <div class="wrap">
+      <SectionHead
+        roman="I"
+        label="Biblioteca"
+        title="Livros que unem espiritualidade e método"
+        aside="Cada obra tem seu próprio caminho. Juntas, elas unem gestão, acolhida, leitura da Bíblia e espiritualidade do cotidiano pastoral."
+      />
+
+      <div class="books-grid">
+        {books.map((book, index) => <BookCard book={book} delay={index * 70} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="temas">
+    <div class="wrap">
+      <SectionHead
+        roman="II"
+        label="Linhas de escrita"
+        title="Temas que atravessam a obra"
+        aside="Assuntos que voltam em livros, formações e conversas com paróquias — sempre a partir da vida concreta das comunidades."
+      />
+
+      <div class="themes-list">
+        {
+          themes.map((theme, index) => (
+            <div class="theme-row reveal" style={`--delay:${index * 50}ms`}>
+              <span class="theme-row__num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{theme.title}</h3>
+              <p>{theme.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy" id="recursos">
+    <div class="wrap">
+      <SectionHead
+        roman="III"
+        label="Recursos"
+        title="Ferramentas para a rotina pastoral"
+        aside="Os leitores de Gestão Pastoral encontram modelos práticos para preencher, visualizar e imprimir. Materiais pensados para a reunião de terça-feira, não para a estante."
+        light
+      />
+
+      <div class="resources-grid">
+        {
+          resources.map((resource, index) => (
+            <div class="resource-item reveal" style={`--delay:${index * 60}ms`}>
+              <span class="resource-item__num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{resource.title}</h3>
+              <p>{resource.text}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <p style="margin-top:2.5rem">
+        <a class="link-arrow link-arrow--light" href="/recursos">
+          Ver todos os recursos <Icon name="arrow" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="formacoes">
+    <div class="wrap">
+      <SectionHead
+        roman="IV"
+        label="Convites"
+        title="Para sua paróquia, diocese ou grupo"
+        aside="Formações, palestras e assessoria construídas a partir da realidade de cada comunidade — com conteúdo aplicável na semana seguinte."
+      />
+
+      <div class="invite-grid">
+        <div>
+          <p class="prose" style="margin-bottom:1.75rem">
+            O trabalho de formação nasce da mesma convicção dos livros: não basta boa vontade; é
+            preciso método, escuta e acompanhamento. Os encontros podem ser presenciais ou online,
+            em módulos únicos ou percursos de acompanhamento.
+          </p>
+          <ul class="invite-list">
+            {invitations.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        <div class="invite-card reveal">
+          <span class="rubric">Falar de um encontro</span>
+          <h3 style="margin-top:1rem">Conte o contexto da sua comunidade.</h3>
+          <p>
+            Descreva o grupo, o tema desejado e as datas possíveis. A resposta volta com uma
+            proposta de formato e um roteiro inicial de trabalho.
+          </p>
+          <a class="btn" href={`mailto:${site.email}?subject=Convite%20para%20forma%C3%A7%C3%A3o`}>
+            Escrever para o autor <Icon name="mail" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy" id="contato">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="rubric rubric--light">Contato</span>
+        <h2 style="margin-top:1.1rem;max-width:16ch">Vamos conversar sobre o próximo passo.</h2>
+        <p style="margin-top:1.25rem;color:rgba(246,241,230,.72);max-width:44ch">
+          Para leitores, paróquias, dioceses, editoras e imprensa. Convites para formações e
+          conversas sobre os livros são bem-vindos.
+        </p>
+        <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+
+      <div>
+        <div class="socials">
+          {
+            site.socials.map((social) => (
+              <a href={social.url} target="_blank" rel="noopener noreferrer">
+                <span>{social.label}</span>
+                <span>{social.handle} ↗</span>
+              </a>
+            ))
+          }
+        </div>
+        <p style="margin-top:1.5rem">
+          <a class="link-arrow link-arrow--light" href="/contato">
+            Todos os canais <Icon name="arrow" />
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

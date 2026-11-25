@@ -1,0 +1,467 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const tools = [
+  { id: 'roda', label: 'Roda da Vida Pastoral', desc: 'Equilíbrio das dimensões pastorais' },
+  { id: 'smart', label: 'Metas SMART', desc: 'Metas claras e alcançáveis' },
+  { id: 'swot', label: 'Análise SWOT', desc: 'Forças, fraquezas, oportunidades e ameaças' },
+  { id: 'eisenhower', label: 'Matriz de Eisenhower', desc: 'Urgente versus importante' },
+  { id: '5w2h', label: 'Plano 5W2H', desc: 'Planejamento completo de ações' },
+  { id: 'checklist', label: 'Checklist de Acolhida', desc: 'Verificação da acolhida' },
+];
+---
+
+<Base
+  title="Ferramentas pastorais"
+  description="Ferramentas práticas do livro Gestão Pastoral: Roda da Vida Pastoral, Metas SMART, análise SWOT, matriz de Eisenhower, plano 5W2H e checklist de acolhida. Preencha, visualize e imprima."
+  canonical={`${site.url}/ferramentas`}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="rubric">Recursos do livro</span>
+      <h1>Ferramentas pastorais</h1>
+      <p class="lead">
+        As ferramentas práticas de <em>Gestão Pastoral</em> em versão digital. Preencha, visualize o
+        resultado e imprima — ou imprima em branco para trabalhar com o conselho cara a cara.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="tools-layout">
+        <nav class="tools-nav no-print" aria-label="Ferramentas disponíveis">
+          {
+            tools.map((tool, index) => (
+              <button
+                type="button"
+                class:list={['tools-nav__item', index === 0 && 'is-active']}
+                data-tool={tool.id}
+              >
+                <span class="tools-nav__num">{String(index + 1).padStart(2, '0')}</span>
+                <span>
+                  <strong>{tool.label}</strong>
+                  <small>{tool.desc}</small>
+                </span>
+              </button>
+            ))
+          }
+          <a class="tools-nav__item" href="/relatorio-financeiro">
+            <span class="tools-nav__num">07</span>
+            <span>
+              <strong>Relatório financeiro</strong>
+              <small>Receitas, despesas e prioridades</small>
+            </span>
+          </a>
+        </nav>
+
+        <div class="tools-panel">
+          <section class="tool" data-panel="roda">
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 01</span>
+              <h2>Roda da Vida Pastoral</h2>
+              <p>
+                Defina os oito aspectos que deseja avaliar, atribua notas de 0 a 10 e veja onde a
+                ação pastoral precisa de atenção.
+              </p>
+            </header>
+
+            <div class="roda-grid" data-roda>
+              {
+                [
+                  'Equipe e lideranças',
+                  'Formação',
+                  'Planejamento',
+                  'Comunicação',
+                  'Participação',
+                  'Recursos',
+                  'Acolhida',
+                  'Espiritualidade',
+                ].map((area, index) => (
+                  <label class="roda-field">
+                    <span>Aspecto {index + 1} · nota <b data-score>{5}</b></span>
+                    <input type="text" value={area} data-area aria-label={`Nome do aspecto ${index + 1}`} />
+                    <input
+                      type="range"
+                      min="0"
+                      max="10"
+                      value="5"
+                      data-range
+                      aria-label={`Nota do aspecto ${index + 1}`}
+                    />
+                  </label>
+                ))
+              }
+            </div>
+
+            <figure class="roda-chart">
+              <div class="roda-chart__bars" data-bars></div>
+              <figcaption>Roda da Vida Pastoral — <em>Gestão Pastoral</em></figcaption>
+            </figure>
+
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-print>
+                Imprimir com notas <Icon name="printer" />
+              </button>
+            </div>
+          </section>
+
+          <section class="tool" data-panel="smart" hidden>
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 02</span>
+              <h2>Metas SMART pastorais</h2>
+              <p>
+                Uma meta bem escrita tem cinco dimensões. Preencha cada uma e transforme a intenção
+                em compromisso verificável.
+              </p>
+            </header>
+
+            <div data-goals></div>
+
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-add-goal>Adicionar meta</button>
+              <button class="btn btn--ghost" type="button" data-print>
+                Imprimir <Icon name="printer" />
+              </button>
+            </div>
+          </section>
+
+          <section class="tool" data-panel="swot" hidden>
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 03</span>
+              <h2>Análise SWOT</h2>
+              <p>
+                O diagnóstico que antecede o planejamento: o que está dentro de casa e o que vem de
+                fora, o que ajuda e o que dificulta.
+              </p>
+            </header>
+            <div class="swot-grid">
+              <div><h3>Forças</h3><p>O que a comunidade faz bem e pode ser ponto de partida.</p><textarea rows="5" aria-label="Forças"></textarea></div>
+              <div><h3>Fraquezas</h3><p>O que trava o cotidiano e precisa de correção.</p><textarea rows="5" aria-label="Fraquezas"></textarea></div>
+              <div><h3>Oportunidades</h3><p>O que o bairro, a cidade e a diocese oferecem.</p><textarea rows="5" aria-label="Oportunidades"></textarea></div>
+              <div><h3>Ameaças</h3><p>O que pressiona a comunidade de fora para dentro.</p><textarea rows="5" aria-label="Ameaças"></textarea></div>
+            </div>
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-print>Imprimir <Icon name="printer" /></button>
+            </div>
+          </section>
+
+          <section class="tool" data-panel="eisenhower" hidden>
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 04</span>
+              <h2>Matriz de Eisenhower</h2>
+              <p>Separe o urgente do importante antes de decidir o que faz hoje, o que agenda e o que delega.</p>
+            </header>
+            <div class="eisen-grid">
+              <div class="is-urgent"><h3>Urgente e importante</h3><p>Faça agora.</p><textarea rows="4" aria-label="Urgente e importante"></textarea></div>
+              <div><h3>Importante, não urgente</h3><p>Agende.</p><textarea rows="4" aria-label="Importante não urgente"></textarea></div>
+              <div><h3>Urgente, não importante</h3><p>Delegue.</p><textarea rows="4" aria-label="Urgente não importante"></textarea></div>
+              <div><h3>Nem urgente, nem importante</h3><p>Revise se precisa existir.</p><textarea rows="4" aria-label="Nem urgente nem importante"></textarea></div>
+            </div>
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-print>Imprimir <Icon name="printer" /></button>
+            </div>
+          </section>
+
+          <section class="tool" data-panel="5w2h" hidden>
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 05</span>
+              <h2>Plano 5W2H</h2>
+              <p>Sete perguntas que transformam uma ideia em plano de ação com responsável e prazo.</p>
+            </header>
+            <div class="w2h">
+              {
+                [
+                  ['O que será feito?', 'What'],
+                  ['Por que será feito?', 'Why'],
+                  ['Onde será feito?', 'Where'],
+                  ['Quando será feito?', 'When'],
+                  ['Quem fará?', 'Who'],
+                  ['Como será feito?', 'How'],
+                  ['Quanto custará?', 'How much'],
+                ].map(([question, label]) => (
+                  <label class="w2h__row">
+                    <span>{question}</span>
+                    <input type="text" placeholder={label} />
+                  </label>
+                ))
+              }
+            </div>
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-print>Imprimir <Icon name="printer" /></button>
+            </div>
+          </section>
+
+          <section class="tool" data-panel="checklist" hidden>
+            <header class="tool__head">
+              <span class="rubric">Ferramenta 06</span>
+              <h2>Checklist de acolhida</h2>
+              <p>Um roteiro para olhar a paróquia com os olhos de quem chega pela primeira vez.</p>
+            </header>
+            <ul class="check-list">
+              {
+                [
+                  'A entrada é visível e há sinalização clara para secretaria, salão e banheiros.',
+                  'Alguém recebe as pessoas antes da missa, e não apenas no ofertório.',
+                  'Existe material impresso com horários, pastorais e contatos.',
+                  'A secretaria responde no horário divulgado e fora dele há recado automático.',
+                  'Pessoas com mobilidade reduzida conseguem circular com autonomia.',
+                  'Crianças têm um lugar seguro e acolhedor.',
+                  'Quem visita pela primeira vez é convidado a se apresentar sem constrangimento.',
+                  'Há um caminho claro para quem quer voltar: nome, contato e próximo encontro.',
+                  'Os pedidos de oração e as situações delicadas têm sigilo.',
+                  'A equipe é avaliada e ouvida de tempos em tempos.',
+                ].map((item) => (
+                  <li><label><input type="checkbox" /> <span>{item}</span></label></li>
+                ))
+              }
+            </ul>
+            <div class="tool__actions no-print">
+              <button class="btn btn--ghost" type="button" data-print>Imprimir <Icon name="printer" /></button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="tools-cta">
+        <div>
+          <span class="rubric rubric--light">O livro</span>
+          <h2>As ferramentas nasceram de um método.</h2>
+          <p>
+            Em <em>Gestão Pastoral</em>, cada uma delas vem acompanhada do fundamento bíblico, do
+            exemplo paroquial e do passo a passo para aplicar na próxima reunião.
+          </p>
+        </div>
+        <div class="tools-cta__actions">
+          <a class="btn btn--light" href="https://www.amazon.com.br/Gest%C3%A3o-Pastoral-Ferramentas-pr%C3%A1ticas-Organizada/dp/6526683142" target="_blank" rel="noopener noreferrer">
+            Impresso · R$ 52,68 <Icon name="external" />
+          </a>
+          <a class="btn btn--outline-light" href="https://www.amazon.com.br/Gest%C3%A3o-Pastoral-Ferramentas-pr%C3%A1ticas-Organizada/dp/6526683142" target="_blank" rel="noopener noreferrer">
+            Kindle · R$ 31,99 <Icon name="external" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  .tools-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+  }
+  .tools-nav {
+    display: grid;
+    gap: 0.35rem;
+    position: sticky;
+    top: 6.5rem;
+  }
+  .tools-nav__item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0.85rem 0.9rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    font: inherit;
+    color: var(--ink-soft);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .tools-nav__item:hover { background: var(--paper-soft); }
+  .tools-nav__item.is-active {
+    background: var(--paper-soft);
+    border-color: var(--line);
+    color: var(--navy);
+  }
+  .tools-nav__num {
+    font-family: var(--serif);
+    color: var(--gold);
+    font-size: 0.85rem;
+    padding-top: 0.15rem;
+  }
+  .tools-nav__item strong { display: block; font-weight: 500; font-size: 0.95rem; }
+  .tools-nav__item small { display: block; font-size: 0.75rem; color: var(--ink-mute); margin-top: 0.15rem; }
+  .tools-panel { min-height: 32rem; }
+  .tool__head h2 { margin: 0.6rem 0 0.5rem; }
+  .tool__head p { max-width: 58ch; }
+  .roda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+  }
+  .roda-field {
+    display: grid;
+    gap: 0.4rem;
+    border: 1px solid var(--line);
+    background: #fffdf8;
+    padding: 0.8rem;
+  }
+  .roda-field span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); }
+  .roda-field b { color: var(--gold); }
+  .roda-field input[type='text'] {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    font: inherit;
+    padding: 0.3rem 0;
+    color: var(--ink);
+  }
+  .roda-field input[type='range'] { accent-color: var(--navy); }
+  .roda-chart {
+    margin: 2rem 0 0;
+    border: 1px solid var(--line);
+    background: var(--paper-soft);
+    padding: 1.5rem 1.25rem 1rem;
+  }
+  .roda-chart__bars {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+    align-items: end;
+    min-height: 180px;
+  }
+  .roda-bar { text-align: center; display: grid; gap: 0.4rem; justify-items: center; }
+  .roda-bar__fill {
+    width: 100%;
+    max-width: 46px;
+    background: var(--navy);
+    transition: height 0.25s ease;
+  }
+  .roda-bar small { font-size: 0.65rem; color: var(--ink-mute); line-height: 1.2; }
+  .roda-chart figcaption { margin-top: 1rem; text-align: center; font-size: 0.78rem; color: var(--ink-mute); }
+  .tool__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .goal-card { border: 1px solid var(--line); background: #fffdf8; padding: 1.25rem; margin-top: 1rem; }
+  .goal-card h3 { font-size: 1rem; margin: 0 0 0.75rem; color: var(--navy); }
+  .goal-card input[type='text'] { width: 100%; padding: 0.6rem 0.7rem; border: 1px solid var(--line); font: inherit; background: #fff; }
+  .smart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.6rem; margin-top: 0.75rem; }
+  .smart-grid label { display: grid; gap: 0.3rem; font-size: 0.75rem; color: var(--ink-mute); }
+  .smart-grid span { color: var(--gold); font-weight: 600; letter-spacing: 0.1em; }
+  .smart-grid textarea { width: 100%; border: 1px solid var(--line); font: inherit; font-size: 0.85rem; padding: 0.5rem; background: #fff; resize: vertical; }
+  .swot-grid, .eisen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; }
+  .swot-grid > div, .eisen-grid > div { border: 1px solid var(--line); padding: 1rem; background: #fffdf8; }
+  .swot-grid h3, .eisen-grid h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+  .swot-grid p, .eisen-grid p { font-size: 0.82rem; margin: 0 0 0.6rem; color: var(--ink-mute); }
+  .swot-grid textarea, .eisen-grid textarea { width: 100%; border: 1px solid var(--line); font: inherit; font-size: 0.85rem; padding: 0.5rem; background: #fff; }
+  .eisen-grid .is-urgent { background: #f7efe4; }
+  .w2h { display: grid; gap: 0.5rem; margin-top: 1.5rem; }
+  .w2h__row { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 1rem; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem; font-size: 0.9rem; }
+  .w2h__row input { border: 0; border-bottom: 1px solid var(--line); background: transparent; font: inherit; padding: 0.4rem 0; }
+  .check-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.55rem; }
+  .check-list label { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.95rem; line-height: 1.5; }
+  .check-list input { margin-top: 0.3rem; accent-color: var(--navy); }
+  .tools-cta {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    background: var(--navy);
+    color: var(--paper);
+    padding: clamp(1.75rem, 4vw, 3rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+  .tools-cta h2 { color: var(--paper); margin: 0.6rem 0; }
+  .tools-cta p { color: rgba(246, 241, 230, 0.75); max-width: 52ch; }
+  .tools-cta__actions { display: grid; gap: 0.6rem; }
+  @media (max-width: 900px) {
+    .tools-layout { grid-template-columns: 1fr; }
+    .tools-nav { position: static; grid-template-columns: repeat(2, 1fr); }
+    .tools-cta { grid-template-columns: 1fr; }
+    .w2h__row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .swot-grid, .eisen-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .no-print, .site-header, .site-footer, .tools-nav { display: none !important; }
+    .tools-layout { grid-template-columns: 1fr; }
+    .tool[hidden] { display: none !important; }
+    .tools-panel .tool:not([hidden]) { display: block; }
+    body { background: #fff; }
+    .roda-field, .roda-chart, .goal-card, .swot-grid > div, .eisen-grid > div { break-inside: avoid; }
+  }
+</style>
+
+<script>
+  const navButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-tool]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
+
+  navButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.tool;
+      navButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== id;
+      });
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-print]').forEach((button) => {
+    button.addEventListener('click', () => window.print());
+  });
+
+  const roda = document.querySelector<HTMLElement>('[data-roda]');
+  const bars = document.querySelector<HTMLElement>('[data-bars]');
+  const ranges = roda ? Array.from(roda.querySelectorAll<HTMLInputElement>('[data-range]')) : [];
+  const areas = roda ? Array.from(roda.querySelectorAll<HTMLInputElement>('[data-area]')) : [];
+
+  const renderBars = () => {
+    if (!bars) return;
+    bars.innerHTML = ranges
+      .map((range, index) => {
+        const value = Number(range.value);
+        const label = (areas[index]?.value || `Aspecto ${index + 1}`).slice(0, 14);
+        return `<div class="roda-bar"><div class="roda-bar__fill" style="height:${Math.max(6, value * 16)}px"></div><small>${label}<br><b>${value}</b></small></div>`;
+      })
+      .join('');
+  };
+
+  ranges.forEach((range, index) => {
+    const badge = range.closest('.roda-field')?.querySelector('[data-score]');
+    range.addEventListener('input', () => {
+      if (badge) badge.textContent = range.value;
+      renderBars();
+    });
+    areas[index]?.addEventListener('input', renderBars);
+  });
+  renderBars();
+
+  const goals = document.querySelector<HTMLElement>('[data-goals]');
+  const smartLabels: [string, string][] = [
+    ['S', 'Específica'],
+    ['M', 'Mensurável'],
+    ['A', 'Alcançável'],
+    ['R', 'Relevante'],
+    ['T', 'Temporal'],
+  ];
+
+  const addGoal = () => {
+    if (!goals) return;
+    const index = goals.children.length + 1;
+    const card = document.createElement('div');
+    card.className = 'goal-card';
+    card.innerHTML = `
+      <h3>Meta ${index}</h3>
+      <input type="text" placeholder="Ex.: aumentar a participação dos jovens na catequese" aria-label="Descrição da meta ${index}">
+      <div class="smart-grid">
+        ${smartLabels
+          .map(
+            ([letter, label]) => `
+          <label><span>${letter} · ${label}</span><textarea rows="2" placeholder="Como detalhar a dimensão ${label.toLowerCase()}?"></textarea></label>`,
+          )
+          .join('')}
+      </div>`;
+    goals.appendChild(card);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('[data-add-goal]').forEach((button) => {
+    button.addEventListener('click', addGoal);
+  });
+  addGoal();
+</script>

@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro';
+import type { Book } from '../data/site';
+
+interface Props {
+  book: Book;
+  delay?: number;
+}
+
+const { book, delay = 0 } = Astro.props;
+const href = `/${book.slug}`;
+const primaryBuy = book.buy?.[0];
+---
+
+<article class="book-card reveal" style={`--delay:${delay}ms`}>
+  <a class="book-card__cover" href={href} tabindex="-1" aria-hidden="true">
+    <span
+      class:list={['book-card__status', book.status === 'soon' && 'book-card__status--soon']}
+    >
+      {book.statusLabel}
+    </span>
+    <img src={book.cover} alt="" width="780" height="1400" loading="lazy" decoding="async" />
+  </a>
+  <div class="book-card__body">
+    <p class="book-card__kicker">{book.kicker}</p>
+    <h3><a href={href}>{book.title}</a></h3>
+    <p class="book-card__sub">{book.subtitle}</p>
+    <p class="book-card__desc">{book.short}</p>
+
+    {
+      book.prices && (
+        <ul class="book-card__prices">
+          {book.prices.map((price) => (
+            <li>
+              <span>{price.label}</span>
+              <strong>{price.value}</strong>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="book-card__foot">
+      <a class="link-arrow" href={href}>
+        {book.status === 'soon' ? 'Conhecer o projeto' : 'Ver o livro'}
+        <Icon name="arrow" />
+      </a>
+      {
+        primaryBuy && (
+          <a
+            class="btn btn--small"
+            href={primaryBuy.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Comprar <Icon name="external" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

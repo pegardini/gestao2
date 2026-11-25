@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#16263f"/>
+  <path d="M14 54V28c0-11 7-17.5 18-20 11 2.5 18 9 18 20v26" fill="none" stroke="#c8a765" stroke-width="2"/>
+  <path d="M32 8V3M27 5h10" stroke="#c8a765" stroke-width="1.6"/>
+  <text x="32" y="44" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="21" fill="#f6f1e6" letter-spacing="1">PG</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "name": "gardini-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/newsreader": "^5.2.8",
+    "astro": "^5.14.1"
+  }
+}

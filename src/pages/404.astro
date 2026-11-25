@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base
+  title="Página não encontrada"
+  description="A página que você procura não existe ou mudou de endereço."
+  noindex
+>
+  <section class="section" style="padding-top:calc(var(--header-h) + 5rem);min-height:70vh">
+    <div class="wrap wrap--narrow">
+      <span class="rubric">Erro 404</span>
+      <h1 style="margin-top:1.25rem;max-width:16ch">Esta página saiu do lugar.</h1>
+      <p class="lead" style="margin-top:1.5rem">
+        O endereço pode estar incorreto ou o conteúdo foi movido. Você pode voltar ao início ou
+        seguir direto para a biblioteca.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem">
+        <a class="btn" href="/">Voltar ao início <Icon name="arrow" /></a>
+        <a class="btn btn--ghost" href="/#livros">Ver os livros</a>
+      </div>
+    </div>
+  </section>
+</Base>

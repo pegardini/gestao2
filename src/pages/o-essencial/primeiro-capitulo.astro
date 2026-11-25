@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import ChapterOne from '../../components/ChapterOne.astro';
+import { site } from '../../data/site';
+---
+
+<Base
+  title="Primeiro capítulo — prévia"
+  description="Prévia de leitura: o capítulo 1 de Gestão Pastoral, sobre a acolhida como primeira evangelização."
+  canonical={`${site.url}/leia-o-primeiro-capitulo`}
+  noindex
+>
+  <ChapterOne
+    note="Esta é a prévia do capítulo 1 de Gestão Pastoral. O primeiro capítulo de O Essencial é Invisível aos Olhos será publicado aqui no lançamento do livro."
+  />
+</Base>

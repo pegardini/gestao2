@@ -1,0 +1,194 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Sobre"
+  description="Trajetória do Pe. Pedro de Celso Gardini: sacerdote da Diocese de São Carlos, jornalista e autor com formação em Administração de Empresas, Filosofia e Teologia."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Você está aqui">
+        <a href="/">Início</a><span aria-hidden="true">/</span><span>Sobre</span>
+      </nav>
+      <div class="page-hero__grid" style="margin-top:1.75rem">
+        <div>
+          <span class="rubric">Trajetória</span>
+          <h1>O cuidado também precisa de método.</h1>
+        </div>
+        <p class="page-hero__aside">
+          Sacerdote, jornalista e autor. Uma vida entre a escuta das pessoas, a organização das
+          comunidades e a escrita — três modos de fazer a mesma coisa: servir.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="split__aside">
+        <figure class="aside-photo">
+          <img
+            src="/images/retrato.webp"
+            alt="Pe. Pedro de Celso Gardini, em vestes litúrgicas, falando ao microfone durante uma celebração"
+            width="900"
+            height="1200"
+            loading="lazy"
+          />
+          <figcaption>Em celebração, na Diocese de São Carlos.</figcaption>
+        </figure>
+        <span class="rubric">Quem é</span>
+        <h2>Entre a sacristia, a redação e a sala de reuniões.</h2>
+      </div>
+
+      <div class="split__body">
+        <p class="dropcap">
+          Pedro de Celso Gardini é sacerdote da Diocese de São Carlos, no interior de São Paulo,
+          jornalista e autor. Antes de escrever sobre paróquias, aprendeu um ofício que não aparece
+          nos livros de gestão: ouvir. É na escuta — do pedido simples, da história repetida, da
+          pergunta que ninguém teve coragem de fazer — que nasce boa parte do que escreve.
+        </p>
+        <p>
+          A formação reúne Administração de Empresas, Filosofia e Teologia, além de estudos em
+          gestão estratégica de pessoas. São saberes que costumam habitar mundos separados. Na
+          vida paroquial, encontram um lugar comum: a comunidade precisa de sentido e de
+          organização para que o cuidado chegue até as pessoas.
+        </p>
+        <p>
+          Como sacerdote, acompanhou de perto a rotina de conselhos, pastorais, catequese,
+          secretaria e celebrações. Viu de perto o desgaste de quem se dedica muito e se organiza
+          pouco; e também a força de equipes simples, bem acompanhadas, que transformam uma
+          paróquia inteira.
+        </p>
+        <p>
+          Dessa experiência nasceram <em>Gestão Pastoral</em>, publicado em 2026, e <em>Jesus, a Torá e a Identidade Judaica</em>,
+          um convite a ler a Bíblia no chão histórico em que o Evangelho nasceu. Um terceiro
+          livro, <em>O Essencial é Invisível aos Olhos</em>, dedicado à secretaria paroquial, está em preparação.
+        </p>
+        <p>
+          Além dos livros, mantém um canal no YouTube dedicado à evangelização e escreve sobre
+          espiritualidade, acolhida, liderança e organização pastoral. Seu trabalho parte de uma
+          convicção simples: gestão pastoral não é burocracia; é amor organizado. E toda estrutura,
+          na Igreja, existe para servir ao encontro.
+        </p>
+
+        <blockquote class="pull-quote">
+          “Gestão pastoral não é burocracia: é amor organizado.”
+          <cite
+            style="display:block;margin-top:.85rem;font-family:var(--sans);font-style:normal;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute)"
+          >
+            Gestão Pastoral, 2026
+          </cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-soft">
+    <div class="wrap">
+      <SectionHead
+        roman="I"
+        label="Percurso"
+        title="Quatro fios de uma mesma vocação"
+        aside="Não uma carreira em linha reta, mas um conjunto de experiências que se explicam mutuamente."
+      />
+
+      <ul class="timeline">
+        <li class="reveal">
+          <span class="timeline__key">Sacerdócio</span>
+          <div class="timeline__value">
+            <strong>Ministério na Diocese de São Carlos</strong>
+            Acompanhamento de comunidades, paróquias e equipes pastorais, com atenção especial à
+            acolhida e à formação de lideranças.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Jornalismo</span>
+          <div class="timeline__value">
+            <strong>Escuta e tradução</strong>
+            Apuração, entrevista e escrita para tornar ideias complexas compreensíveis — habilidade
+            que atravessa todos os seus livros.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Formação</span>
+          <div class="timeline__value">
+            <strong>Administração, Filosofia e Teologia</strong>
+            O encontro entre método e sentido, completado pela formação em gestão estratégica de
+            pessoas.
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="timeline__key">Escrita</span>
+          <div class="timeline__value">
+            <strong>Livros a serviço da vida paroquial</strong>
+            Obras que unem espiritualidade e ferramentas práticas, com linguagem acessível e
+            aplicação concreta.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead
+        roman="II"
+        label="Modo de trabalhar"
+        title="Como os livros e as formações são construídos"
+        aside="Três compromissos que valem tanto para uma página quanto para uma reunião de conselho."
+      />
+
+      <div class="resource-cards">
+        <article class="resource-card reveal">
+          <span class="roman">01</span>
+          <h3>Escuta antes do método</h3>
+          <p>
+            Nenhuma ferramenta funciona colada de fora. O ponto de partida é sempre a realidade da
+            comunidade: seu tamanho, seu clero, suas equipes, seu calendário, seus limites.
+          </p>
+        </article>
+        <article class="resource-card reveal" style="--delay:60ms">
+          <span class="roman">02</span>
+          <h3>Espiritualidade e técnica juntas</h3>
+          <p>
+            Planejamento sem oração vira empresa; oração sem planejamento vira cansaço. Os
+            conteúdos procuram manter as duas dimensões na mesma frase.
+          </p>
+        </article>
+        <article class="resource-card reveal" style="--delay:120ms">
+          <span class="roman">03</span>
+          <h3>Linguagem que se entende</h3>
+          <p>
+            Ferramenta boa é a que a coordenação consegue usar na segunda-feira. Por isso, quadros,
+            roteiros e checklists são explicados sem jargão e com exemplos reais.
+          </p>
+        </article>
+        <article class="resource-card reveal" style="--delay:180ms">
+          <span class="roman">04</span>
+          <h3>Organização que liberta</h3>
+          <p>
+            O objetivo não é controlar pessoas, e sim liberar tempo e energia para o essencial:
+            celebrar, acolher, acompanhar e evangelizar.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="rubric rubric--light">Próximo passo</span>
+        <h2 style="margin-top:1.1rem;max-width:18ch">Conheça os livros ou proponha uma formação.</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.9rem;justify-self:start">
+        <a class="btn btn--light" href="/#livros">Ver a biblioteca <Icon name="arrow" /></a>
+        <a class="btn btn--outline-light" href={`mailto:${site.email}`}>Escrever para o autor</a>
+      </div>
+    </div>
+  </section>
+</Base>
