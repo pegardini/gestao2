@@ -39,12 +39,8 @@ export const site = {
       handle: 'Pedro de Celso Gardini',
       url: 'https://linkedin.com/in/pedro-de-celso-gardini-ba8baa22',
     },
-    {
-      label: 'Facebook',
-      handle: 'Pe. Pedro de Celso Gardini',
-      url: 'https://www.facebook.com/pegardini',
-      page: true,
-    },
+    // A Página do Facebook entra aqui quando o endereço oficial for confirmado.
+    // O perfil pessoal (facebook.com/pegardini) não é usado no site.
   ],
 };
 
